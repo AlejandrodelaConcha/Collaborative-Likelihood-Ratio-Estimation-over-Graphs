@@ -253,7 +253,7 @@ First we introduce the necessary components to reproduce results similar to thos
 3. **AFROC plots** Compute the AFROC curves compared all the methods: 
 
    ```bash
-   python plot_AFROC_synthetic_experiments.py --results_directory ".../Results" --experiment "1A" --N 50
+   python plot_AFROC_alphas.py --results_directory ".../Results" --experiment "1A" --N 50
 
 4. Repeat step 2 and 3 for the sample sizes $N=\{50,100,250\}$. 
 
@@ -261,7 +261,7 @@ First we introduce the necessary components to reproduce results similar to thos
 
 ### Seimic datasets
 
-We use seismic data as a practical example to showcase the potential of CTST in performing spatial statistical analyses. However, we emphasize that this should not be interpreted as an attempt to outperform existing state-of-the-art methods in the field. Geological hazard monitoring systems consist of several stations strategically positioned across a territory to monitor ground noise and shaking through a variety of sensors. When a seismic event occurs, it travels through the Earth, and this is captured by the monitoring sensors. Stations closer to the epicenter of a seismic event tend to show a higher response, exhibiting faster reactions and more pronounced differences in their pre- and post-event data. In this context, a graph-structured multiple two-sample test can be used to assess the significance of a seismic event and identify the stations and time periods during which each station was activated. The datasets are downloaded from GEONET. To replicate the experiments from the paper, we refer to the events with the following IDs: **2021p405872**, **2023p741652**.
+We use seismic data as a practical example to showcase the potential of CTST in performing spatial statistical analyses. However, we emphasize that this should not be interpreted as an attempt to outperform existing state-of-the-art methods in the field. Geological hazard monitoring systems consist of several stations strategically positioned across a territory to monitor ground noise and shaking through a variety of sensors. When a seismic event occurs, it travels through the Earth, and this is captured by the monitoring sensors. Stations closer to the epicenter of a seismic event tend to show a higher response, exhibiting faster reactions and more pronounced differences in their pre- and post-event data. In this context, a graph-structured multiple two-sample test can be used to assess the significance of a seismic event and identify the stations and time periods during which each station was activated. The datasets are downloaded from GEONET. To replicate the experiments from the paper, we refer to the events with the following IDs: **2024p817566**, **2023p741652**.
 
 <div align="center">
   <img src="img/ctst_map.png" alt="New Zealand network" width="1000">
@@ -303,12 +303,17 @@ If you find this repository useful for your work, please cite the following publ
       url={https://arxiv.org/abs/2205.14461}, 
 }
 
-@misc{delaconcha2024collaborativenonparametrictwosampletesting,
-      title={Collaborative non-parametric two-sample testing}, 
-      author={Alejandro de la Concha and Nicolas Vayatis and Argyris Kalogeratos},
-      year={2024},
-      eprint={2402.05715},
-      archivePrefix={arXiv},
-      primaryClass={stat.ML},
-      url={https://arxiv.org/abs/2402.05715}, 
+@InProceedings{pmlr-v258-concha-duarte25a,
+  title = 	 {Collaborative non-parametric two-sample testing},
+  author =       {la Concha Duarte, Alejandro David De and Vayatis, Nicolas and Kalogeratos, Argyris},
+  booktitle = 	 {Proceedings of The 28th International Conference on Artificial Intelligence and Statistics},
+  pages = 	 {838--846},
+  year = 	 {2025},
+  editor = 	 {Li, Yingzhen and Mandt, Stephan and Agrawal, Shipra and Khan, Emtiyaz},
+  volume = 	 {258},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {03--05 May},
+  publisher =    {PMLR},
+  pdf = 	 {https://raw.githubusercontent.com/mlresearch/v258/main/assets/concha-duarte25a/concha-duarte25a.pdf},
+  url = 	 {https://proceedings.mlr.press/v258/concha-duarte25a.html}
 }
