@@ -250,7 +250,7 @@ def generate_experiment_4(N_ref,N_test,seed=0,H_null=False):
             u=np.random.choice(np.arange(5),p=p,size=N_test)
             counts=np.unique(u,return_counts=True)
             for j in range(len(counts[0])):
-                gaussian_data.append(np.random.multivariate_normal(mean=means[j],cov=5*np.eye(2),size=counts[1][j]))
+                gaussian_data.append(np.random.multivariate_normal(mean=means[j],cov=np.eye(2),size=counts[1][j]))
             data_test[i]=np.vstack(gaussian_data)
             index=np.random.choice(N_test,size=N_test,replace=False)
             data_test[i]=data_test[i][index]

@@ -238,6 +238,7 @@ def plot_results_seismic(file_name,complete_data_ref,complete_data_test,G,epicen
 
         else:
             index_nodes=np.argsort(np.sum((G.coords-epicenter)**2,axis=1)[nodes_to_plot])
+            j=0
             for i in index_nodes:
                 index_node=np.where(clusters["cluster-"+str(0)]["node"]==nodes_to_plot[i]) 
                 time=clusters["cluster-"+str(0)]["time"][index_node]
@@ -245,13 +246,13 @@ def plot_results_seismic(file_name,complete_data_ref,complete_data_test,G,epicen
                 end=[time_lenght*(t+1) for t in time]  
                 alpha = 0.2 
                 for t in range(len(start)):  
-                    axs[i].axvspan(max(0, start[t] - 0.5), end[t] - 0.5, facecolor=COLOR_CYCLE[t%2], alpha=alpha)
-                    
-                axs[i].plot(complete_data_ref[nodes_to_plot[i]])
-                axs[i].plot(complete_data_test[nodes_to_plot[i]],alpha=0.5)
-                update_colors_green_red(axs[i])
-                axs[i].set_yticklabels([])
-                axs[i].set_xticklabels([])
+                    axs[j].axvspan(max(0, start[t] - 0.5), end[t] - 0.5, facecolor=COLOR_CYCLE[t%2], alpha=alpha)
+                axs[j].plot(complete_data_ref[nodes_to_plot[i]])
+                axs[j].plot(complete_data_test[nodes_to_plot[i]],alpha=0.5)
+                update_colors_green_red(axs[j])
+                axs[j].set_yticklabels([])
+                axs[j].set_xticklabels([])
+                j+=1
 
         xticks=np.arange(1100,step=100)
         labels=["Os","5s","10s","15s","20s","25s","30s","35s","40s","45s","50s"]
@@ -291,6 +292,7 @@ def plot_results_seismic(file_name,complete_data_ref,complete_data_test,G,epicen
 
             else:
                 index_nodes=np.argsort(np.sum((G_seismic.coords-epicenter)**2,axis=1)[nodes_to_plot])
+                j=0
                 for i in index_nodes:
                     index_node=np.where(clusters["cluster-"+str(c)]["node"]==nodes_to_plot[i]) 
                     time=clusters["cluster-"+str(c)]["time"][index_node]
@@ -298,10 +300,11 @@ def plot_results_seismic(file_name,complete_data_ref,complete_data_test,G,epicen
                     end=[time_lenght*(t+1) for t in time]  
                     alpha = 0.2 
                     for t in range(len(start)):  
-                        axs[i].axvspan(max(0, start[t] - 0.5), end[t] - 0.5, facecolor=COLOR_CYCLE[t%2], alpha=alpha)
-                    axs[i].plot(complete_data_ref[nodes_to_plot[i]])
-                    axs[i].plot(complete_data_test[nodes_to_plot[i]],alpha=0.5)
-                    update_colors_green_red(axs[i])
+                        axs[j].axvspan(max(0, start[t] - 0.5), end[t] - 0.5, facecolor=COLOR_CYCLE[t%2], alpha=alpha)
+                    axs[j].plot(complete_data_ref[nodes_to_plot[i]])
+                    axs[j].plot(complete_data_test[nodes_to_plot[i]],alpha=0.5)
+                    update_colors_green_red(axs[j])
+                    j+=1
 
             xticks=np.arange(1100,step=100)
             labels=["Os","5s","10s","15s","20s","25s","30s","35s","40s","45s","50s"]

@@ -76,23 +76,21 @@ def get_data(network,event_id,seconds_before,seconds_after):
                    
                     aux_waveform=client.get_waveforms(code, station, "*",sensor_name[i],
                                        otime-seconds_before-10, otime + seconds_after+10,attach_response=True)
-                    
-                    aux_waveform.remove_response(output="VEL")
+                                 
+                    aux_waveform.remove_response(output="VEL")    
                     aux_waveform.detrend("linear")
-                    aux_waveform.detrend(type='demean')
                     aux_waveform.filter("bandpass",freqmin=2, freqmax=16)
-                    down_sampled=obspy.signal.filter.integer_decimation(aux_waveform[0].data,decimation_factor=5)[199:]
+                    envelope=obspy.signal.filter.envelope(aux_waveform[0].data)
+                    down_sampled=obspy.signal.filter.integer_decimation(envelope,decimation_factor=5)[199:]
                     down_sampled=down_sampled[:len(down_sampled)-200]
-            
                     model = AutoReg(down_sampled, lags=1)
                     model_fit = model.fit()
                     residuals=down_sampled-model_fit.predict()
                     residuals=residuals[1:]
-             
                     mean_residuals=np.mean(residuals)
                     std_residuals=np.std(residuals)
                     residuals=(residuals-mean_residuals)/std_residuals
-                    data[station].append(1*residuals)
+                    data[station].append(1*residuals)                
                 
                 except:
                     print(station)
